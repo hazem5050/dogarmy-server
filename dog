@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DogArmy - Connect Wallet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- WalletConnect Web3Modal -->
+<script type="module">
+import { createWeb3Modal, defaultConfig } from "https://unpkg.com/@web3modal/ethereum@2.6.1";
+
+const projectId = "d5c1bd4a398f58d3a8beee555444111a"; // Example ID – you can replace it
+
+const chains = [{
+  chainId: 56,
+  name: "BNB Smart Chain",
+  currency: "BNB",
+  explorerUrl: "https://bscscan.com",
+  rpcUrl: "https://bsc-dataseed.binance.org/"
+}];
+
+const metadata = {
+  name: "DogArmy",
+  description: "DogArmy Wallet Connect",
+  url: "https://dogarmy.com",
+  icons: ["https://dogarmy.com/logo.png"]
+};
+
+const config = defaultConfig({
+  chains,
+  projectId,
+  metadata
+});
+
+createWeb3Modal({
+  projectId,
+  themeMode: "dark",
+  themeVariables: {
+    "--w3m-accent": "#00ff77"
+  },
+  ethereum: config
+});
+
+window.openModal = () => {
+  const modal = document.querySelector("w3m-button");
+  modal.click();
+};
+</script>
+
+<style>
+body {
+  background: #111;
+  color: #fff;
+  font-family: Arial;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.btn {
+  background: #00ff77;
+  color: #000;
+  padding: 15px 25px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>🐶 DogArmy</h1>
+<h2>Connect Your Wallet (BSC Mainnet)</h2>
+
+<button class="btn" onclick="openModal()">Connect Wallet</button>
+
+<w3m-button></w3m-button>
+
+</body>
+</html>
